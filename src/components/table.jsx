@@ -2,7 +2,13 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const Table = ({savedData, setData, navigate, handleDelete, setModalOpen, setEditIndex}) => {
+const Table = ({
+  savedData,
+  setData,
+  navigate,
+  handleDelete,
+  setEditIndex,
+}) => {
   return (
     <>
       <div className="overflow-x-auto mt-5">
@@ -51,14 +57,16 @@ const Table = ({savedData, setData, navigate, handleDelete, setModalOpen, setEdi
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => {
-                        setData(item), setModalOpen(true), setEditIndex(i);
+                        navigate(`/tasklist/edit/${i}`),
+                          setData(item),
+                          setEditIndex(i);
                       }}
                       className="bg-gray-600 rounded-lg cursor-pointer hover:opacity-90 p-1.5 text-[#fff]"
                     >
                       <AiFillEdit />
                     </button>
                     <button
-                      onClick={() => navigate(`/view/${i}`)}
+                      onClick={() => navigate(`/tasklist/view/${i}`)}
                       className="bg-gray-600 rounded-lg cursor-pointer hover:opacity-90 p-1.5 text-[#fff]"
                     >
                       <FaEye />

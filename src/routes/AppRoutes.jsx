@@ -4,17 +4,18 @@ import { lazy, Suspense } from "react";
 const MainLayout = lazy(() => import("../layout/MainLayout"));
 const Home = lazy(() => import("../pages/home"));
 const TaskList = lazy(() => import("../pages/taskList"));
-const About = lazy(() => import("../pages/about"));
-const ViewTask = lazy(() => import("../pages/viewTask"));
+const ViewTask = lazy(() => import("../pages/taskList/view"));
+const AddEditList = lazy(() => import("../pages/taskList/addEdit"));
 const AppRoutes = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/tasklist" element={<TaskList />} />
-          <Route path="/view/:index" element={<ViewTask />} />
+          <Route path="/tasklist/view/:index" element={<ViewTask />} />
+          <Route path="/tasklist/add" element={<AddEditList />} />
+          <Route path="/tasklist/edit/:id" element={<AddEditList />} />
         </Route>
       </Routes>
     </Suspense>
