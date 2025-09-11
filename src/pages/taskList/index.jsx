@@ -17,7 +17,9 @@ const TaskList = () => {
   // delete item
   const handleDelete = (item) => {
     console.log(item, "delete");
-    setSavedData((prev) => prev.filter((t, i) => i !== item));
+    const updatedList = savedData.filter((_, i) => i !== item);
+    setSavedData(updatedList);
+     localStorage.setItem("list", JSON.stringify(updatedList));
   };
 
   return (
