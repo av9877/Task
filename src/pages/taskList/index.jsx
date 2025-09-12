@@ -16,6 +16,16 @@ const TaskList = () => {
       setSavedData([]);
     }
   }, []);
+  useEffect(() => {
+    const searchTimer = setTimeout(() => {
+      const filtered = fullData.filter((item) =>
+        item.firstName.toLowerCase().includes(search.toLowerCase())
+      );
+      setSavedData(filtered);
+    }, 300);
+
+    return () => clearTimeout(searchTimer);
+  }, [search, fullData]);
 
   // delete item
   const handleDelete = (item) => {
@@ -29,16 +39,7 @@ const TaskList = () => {
     const value = e.target.value;
     setSearch(value);
   };
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      const filtered = fullData.filter((item) =>
-        item.firstName.toLowerCase().includes(search.toLowerCase())
-      );
-      setSavedData(filtered);
-    }, 300);
 
-    return () => clearTimeout(delayDebounce);
-  }, [search, fullData]);
   return (
     <>
       <Html
