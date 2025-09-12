@@ -28,11 +28,17 @@ const TaskList = () => {
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearch(value);
-    const filteredItem = fullData.filter((item) =>
-      item.firstName.toLowerCase().includes(value)
-    );
-    setSavedData(filteredItem);
   };
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      const filtered = fullData.filter((item) =>
+        item.firstName.toLowerCase().includes(search.toLowerCase())
+      );
+      setSavedData(filtered);
+    }, 300);
+
+    return () => clearTimeout(delayDebounce);
+  }, [search, fullData]);
   return (
     <>
       <Html
