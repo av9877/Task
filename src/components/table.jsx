@@ -30,6 +30,9 @@ const Table = ({
                 Phone
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                Country
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                 End Date
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -60,6 +63,9 @@ const Table = ({
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                   {item.phone}
+                </td>
+                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  {item.country}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                   {moment(item.date).format("DD/MM/YYYY")}
