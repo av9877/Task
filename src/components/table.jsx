@@ -1,3 +1,4 @@
+import moment from "moment";
 import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -9,6 +10,7 @@ const Table = ({
   handleDelete,
   setEditIndex,
 }) => {
+
   return (
     <>
       <div className="overflow-x-auto mt-5">
@@ -28,6 +30,15 @@ const Table = ({
                 Phone
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                End Date
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                Level
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                Category
+              </th>
+              <th className="w-[250px] px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                 Description
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -51,8 +62,27 @@ const Table = ({
                   {item.phone}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  {item.description}
+                  {moment(item.date).format("DD/MM/YYYY")}
                 </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  {item.level}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  <div className="flex gap-2">
+                    {item.category.map((val, i) => (
+                      <div
+                        key={i}
+                        className="bg-gray-200 text-[#000] px-2 py-1 rounded-lg"
+                      >
+                        {val}
+                      </div>
+                    ))}
+                  </div>
+                </td>
+                <td
+                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                   <div className="flex items-center gap-2">
                     <button

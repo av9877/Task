@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -12,6 +13,7 @@ const ViewTask = () => {
       setItem(viewData[index]);
     }
   }, []);
+  console.log(item);
 
   return (
     <>
@@ -35,7 +37,34 @@ const ViewTask = () => {
           <strong>Phone:</strong> {item.phone}
         </p>
         <p>
-          <strong>Description:</strong> {item.description}
+          <strong>End Date:</strong> {moment(item.date).format("DD/MM/YYYY")}
+        </p>
+        <p>
+          <strong>Country:</strong> {item.country}
+        </p>
+        <p>
+          <strong>State:</strong> {item.state}
+        </p>
+        <p>
+          <strong>Level:</strong> {item.level}
+        </p>
+        <div className="flex items-center gap-1">
+          <strong>Category:</strong>{" "}
+          <div className="flex gap-2">
+            {item.category?.map((val, i) => (
+              <div
+                key={i}
+                className="bg-gray-200 text-[#000] px-2 py-1 rounded-lg"
+              >
+                {val}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="flex items-center gap-1">
+          <strong>Description:</strong>
+          <span dangerouslySetInnerHTML={{ __html: item.description }}></span>
         </p>
       </div>
     </>
