@@ -18,6 +18,7 @@ const AddEditList = () => {
     date: "",
     level: "",
     country: "",
+    countryId:"",
     state: "",
     category: [],
     description: "",
@@ -63,13 +64,13 @@ const AddEditList = () => {
     setData((prev) => ({
       ...prev,
       country: country.name,
+      countryId:country.id
 
     }));
   };
 
   const handleStateChange = (state) => {
     console.log(state,'state');
-    
     setData((prev) => ({
       ...prev,
       state: state.isoCode,
@@ -126,6 +127,7 @@ const AddEditList = () => {
       date: "",
       level: "",
       country: "",
+      countryId:"",
       state: "",
       category: [],
       description: "",
@@ -134,6 +136,7 @@ const AddEditList = () => {
   };
   // today's date
   const today = new Date();
+  
   return (
     <>
       <section>
@@ -211,7 +214,7 @@ const AddEditList = () => {
               </label>
               <div className="mb-3">
                 <StateSelect
-                  country={data.country}
+                  country={data.countryId}
                   value={data.state}
                   name="state"
                   onChange={handleStateChange}
