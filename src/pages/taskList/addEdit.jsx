@@ -64,7 +64,8 @@ const AddEditList = () => {
     setData((prev) => ({
       ...prev,
       country: country.name,
-      countryId:country.id
+      countryId:country.iso2,
+      state: "",
 
     }));
   };
