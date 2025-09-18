@@ -46,6 +46,9 @@ const ViewTask = () => {
           <strong>State:</strong> {item.state}
         </p>
         <p>
+          <strong>City:</strong> {item.city}
+        </p>
+        <p>
           <strong>Level:</strong> {item.level}
         </p>
         <div className="flex items-center gap-1">

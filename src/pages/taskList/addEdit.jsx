@@ -1,30 +1,36 @@
 import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { useNavigate, useParams } from "react-router-dom";
-import "react-quill-new/dist/quill.snow.css";
 import ReactQuill from "react-quill-new";
-import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
-import "react-country-state-city/dist/react-country-state-city.css";
-import { CountrySelect, StateSelect } from "react-country-state-city";
 
+import {
+  CitySelect,
+  CountrySelect,
+  StateSelect,
+} from "react-country-state-city";
 
 const AddEditList = () => {
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     phone: "",
+    phoneId: "",
     date: "",
     level: "",
     country: "",
-    countryId:"",
+    countryId: "",
     state: "",
+    stateId: "",
+    city: "",
+    image: "",
     category: [],
     description: "",
   });
   const navigate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
     const existing = JSON.parse(localStorage.getItem("list"));
     const currentList = Array.isArray(existing) ? existing : [];
@@ -60,21 +66,28 @@ const AddEditList = () => {
   };
 
   const handleCountryChange = (country) => {
-    console.log(country, "country");
     setData((prev) => ({
       ...prev,
       country: country.name,
-      countryId:country.iso2,
+      countryId: country.id,
+      phoneId: country.iso2.toLowerCase() || "",
       state: "",
-
     }));
   };
 
   const handleStateChange = (state) => {
-    console.log(state,'state');
     setData((prev) => ({
       ...prev,
-      state: state.isoCode,
+      state: state.name,
+      stateId: state.id,
+      city: "",
+    }));
+  };
+
+  const handleCityChange = (city) => {
+    setData((prev) => ({
+      ...prev,
+      city: city.name,
     }));
   };
 
@@ -128,16 +141,28 @@ const AddEditList = () => {
       date: "",
       level: "",
       country: "",
-      countryId:"",
+      countryId: "",
+      phoneId: "",
       state: "",
+      stateId: "",
+      city: "",
       category: [],
+      image:"",
       description: "",
     });
     navigate("/tasklist");
   };
   // today's date
   const today = new Date();
-  
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setData((prev) => ({ ...prev, image: file }));
+    }
+  };
+
+  console.log(data, "data");
+
   return (
     <>
       <section>
@@ -198,7 +223,6 @@ const AddEditList = () => {
               </label>
               <div className="mb-3">
                 <CountrySelect
-                  value={data.country}
                   defaultValue={data.country}
                   name="country"
                   onChange={handleCountryChange}
@@ -215,11 +239,29 @@ const AddEditList = () => {
               </label>
               <div className="mb-3">
                 <StateSelect
-                  country={data.countryId}
-                  value={data.state}
+                  countryid={data.countryId}
+                  defaultValue={data.state}
                   name="state"
                   onChange={handleStateChange}
                   placeHolder="Select state"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                className="block mb-2 font-medium text-gray-700"
+                htmlFor="lastName"
+              >
+                City
+              </label>
+              <div className="mb-3">
+                <CitySelect
+                  countryid={data.countryId}
+                  stateid={data.stateId}
+                  defaultValue={data.city}
+                  name="city"
+                  onChange={handleCityChange}
+                  placeHolder="Select CIty"
                 />
               </div>
             </div>
@@ -232,7 +274,7 @@ const AddEditList = () => {
               </label>
               <PhoneInput
                 value={data.phone}
-                country={"in"}
+                country={data.phoneId || "in"}
                 onChange={handlePhoneChange}
                 inputClass="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
@@ -294,6 +336,23 @@ const AddEditList = () => {
                 />
               </div>
             </div>
+            {/* <div>
+              <label className="block mb-2 font-medium text-gray-700">
+                upload image
+              </label>
+              <div className="mb-4">
+                <input type="file" onChange={handleImage} />
+              </div>
+              {data?.image && (
+                <div className="mb-4">
+                  <img
+                    src={URL.createObjectURL(data.image)}
+                    alt="Preview"
+                    style={{ width: "200px", height: "auto" }}
+                  />
+                </div>
+              )}
+            </div> */}
 
             <div className="md:col-span-2 lg:col-span-3">
               <label

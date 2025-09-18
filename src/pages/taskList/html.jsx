@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import Table from "../../components/table";
 
-const Html = ({ handleSearch, search,handleDelete, setEditIndex, setData, savedData, navigate }) => {
+const Html = ({
+  handleSearch,
+  search,
+  handleDelete,
+  setEditIndex,
+  setData,
+  savedData,
+}) => {
+  const navigate = useNavigate();
   return (
     <>
       <section>
@@ -30,7 +39,6 @@ const Html = ({ handleSearch, search,handleDelete, setEditIndex, setData, savedD
               handleDelete={handleDelete}
               savedData={savedData}
               setEditIndex={setEditIndex}
-              navigate={navigate}
               setData={setData}
             />
           </div>

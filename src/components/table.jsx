@@ -2,15 +2,15 @@ import moment from "moment";
 import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Table = ({
   savedData,
   setData,
-  navigate,
   handleDelete,
   setEditIndex,
 }) => {
-
+const navigate = useNavigate();
   return (
     <>
       <div className="overflow-x-auto mt-5">

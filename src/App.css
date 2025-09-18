@@ -1,3 +1,4 @@
+
 .special-label {
   display: none;
 }
@@ -48,7 +49,8 @@
   border: 0 !important;
   padding: 7px !important;
   outline: none;
-  box-shadow: none;
+  box-shadow
+  : none;
 }
 .stsearch-box{
   padding: 0 !important;
