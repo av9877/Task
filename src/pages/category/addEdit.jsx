@@ -16,7 +16,6 @@ const AddEditCategory = () => {
     }
   }, [id]);
 
-  // form handle change
   const handleChange = (e, index) => {
     const { name, value } = e.target;
     setData((prev) => {
@@ -25,6 +24,7 @@ const AddEditCategory = () => {
       return newData;
     });
   };
+  
   // form
   const handleSubmit = (e) => {
     e.preventDefault();
