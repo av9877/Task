@@ -10,6 +10,8 @@ const Html = ({
   savedData,
 }) => {
   const navigate = useNavigate();
+  console.log(savedData);
+  
   return (
     <>
       <section>

@@ -20,9 +20,15 @@ const Header = () => {
             </Link> */}
              <Link
               to="/tasklist"
-              className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-200 border-r pe-5"
             >
               Task
+            </Link>
+               <Link
+              to="/category"
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+            >
+              Category
             </Link>
           </div>
         </nav>

@@ -147,7 +147,7 @@ const AddEditList = () => {
       stateId: "",
       city: "",
       category: [],
-      image:"",
+      image: "",
       description: "",
     });
     navigate("/tasklist");
