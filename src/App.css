@@ -55,3 +55,70 @@
 .stsearch-box{
   padding: 0 !important;
 }
+
+
+/* Reset container positioning */
+.floating-container {
+  position: relative;
+  height: 100vh;
+}
+
+/* Hide checkbox */
+.toggle-checkbox {
+  display: none;
+}
+
+/* Floating Button */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Box that appears above the button */
+.box {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  width: 250px;
+  max-height: 0;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+/* Show box when checkbox is checked */
+.toggle-checkbox:checked ~ .box {
+  max-height: 200px;
+  padding: 20px;
+}
+
+/* Rotate + icon to x */
+.toggle-checkbox:checked + .floating-btn .plus-icon {
+  transform: rotate(45deg);
+}
+
+.plus-icon {
+  transition: transform 0.3s ease;
+}

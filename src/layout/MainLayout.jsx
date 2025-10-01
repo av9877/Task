@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
+import { CartProvider } from "../context/ShoppingContext";
 
 const MainLayout = () => {
   return (
     <>
-      <Header />
-      <main className="p-5">
-        <Outlet />
-      </main>
+      <CartProvider>
+        <Header />
+        <main className="p-5">
+          <Outlet />
+        </main>
+      </CartProvider>
     </>
   );
 };

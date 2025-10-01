@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import ProductAddEdit from "../pages/Product/addEdit.jsx";
 
 const MainLayout = lazy(() => import("../layout/MainLayout"));
 const Home = lazy(() => import("../pages/home"));
@@ -10,6 +11,8 @@ const CategoryList = lazy(() => import("../pages/category"));
 const ViewCategory = lazy(() => import("../pages/category/view"));
 const AddEditCategory = lazy(() => import("../pages/category/addEdit"));
 const Performance = lazy(() => import("../pages/seo/performance.jsx"));
+const Quiz = lazy(() => import("../pages/Quiz/index.jsx"));
+const Product = lazy(() => import("../pages/Product/index.jsx"));
 
 const AppRoutes = () => {
   return (
@@ -26,6 +29,9 @@ const AppRoutes = () => {
           <Route path="/category/add" element={<AddEditCategory />} />
           <Route path="/category/edit/:id" element={<AddEditCategory />} />
           <Route path="/performance" element={<Performance />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/product" element={<Product />} />
+            <Route path="/product/add" element={<ProductAddEdit />} />
         </Route>
       </Routes>
     </Suspense>

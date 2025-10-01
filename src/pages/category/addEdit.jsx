@@ -9,7 +9,7 @@ const AddEditCategory = () => {
   useEffect(() => {
     const existing = JSON.parse(localStorage.getItem("list")) || [];
     if (id) {
-      const item = existing[id];      
+      const item = existing[id];
       setData([item]);
     } else {
       setData([{ firstName: "", lastName: "" }]);
@@ -24,7 +24,7 @@ const AddEditCategory = () => {
       return newData;
     });
   };
-  
+
   // form
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const AddEditCategory = () => {
 
     if (id) {
       updatedList = [...existing];
-      // updatedList.splice(id, data.length, ...data);
+      updatedList[id] = data[0];
     } else {
       updatedList = [...existing, ...data];
     }
@@ -96,33 +96,35 @@ const AddEditCategory = () => {
                   />
                 </div>
 
-                <div>
+                <div className="w-full">
                   <label
                     className="block mb-2 font-medium text-gray-700"
                     htmlFor="lastName"
                   >
                     Last Name
                   </label>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    value={res.lastName}
-                    onChange={(e) => handleChange(e, i)}
-                    required
-                    className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
-                    placeholder="Enter last name"
-                  />
+                  <div className="flex items-center gap-2">
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      value={res.lastName}
+                      onChange={(e) => handleChange(e, i)}
+                      required
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                      placeholder="Enter last name"
+                    />
+                    {i > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(i)}
+                        className="bg-red-500 rounded-lg px-4 py-1 text-[#fff]"
+                      >
+                        delete
+                      </button>
+                    )}
+                  </div>
                 </div>
-                {i > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(i)}
-                    className="bg-red-500 rounded-lg px-4 py-1 text-[#fff]"
-                  >
-                    delete
-                  </button>
-                )}
               </div>
             ))}
             <div className="flex justify-end col-span-full">

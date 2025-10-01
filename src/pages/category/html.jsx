@@ -1,16 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import Table from "../../components/table";
-import { MdDelete } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
-import { AiFillEdit } from "react-icons/ai";
+import {
+  MdDelete,
+  MdOutlineKeyboardArrowLeft,
+  MdOutlineKeyboardArrowRight,
+} from "react-icons/md";
+import { FaArrowCircleDown, FaArrowCircleUp, FaEye } from "react-icons/fa";
+import {
+  AiFillEdit,
+  AiOutlineSortAscending,
+  AiOutlineSortDescending,
+} from "react-icons/ai";
+import {
+  TbSortAscending2Filled,
+  TbSortDescending2Filled,
+} from "react-icons/tb";
+import Pagination from "../../components/pagination";
+import ReactPaginate from "react-paginate";
 
 const Html = ({
   handleSearch,
   search,
   handleDelete,
-  setEditIndex,
-  setData,
+  sortedData,
   savedData,
+  totalData,
+  goToPage,
+  setCurrentPage,
+  totalPages,
+  startIdx,
+  currentPage,
 }) => {
   const navigate = useNavigate();
   console.log(savedData);
@@ -44,8 +63,22 @@ const Html = ({
               <table className="min-w-full border border-gray-200 divide-y divide-gray-200">
                 <thead className="bg-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                      First Name
+                    <th className="px-6 py-3 w-[40%] text-left text-xs font-medium text-black uppercase tracking-wider">
+                      <div className="flex items-center gap-5">
+                        First Name
+                        <button
+                          onClick={() => sortedData("asc")}
+                          className="bg-black rounded-lg p-1 text-sm text-white cursor-pointer"
+                        >
+                          <FaArrowCircleUp />
+                        </button>
+                        <button
+                          onClick={() => sortedData("des")}
+                          className="bg-black rounded-lg p-1 text-sm text-white cursor-pointer"
+                        >
+                          <FaArrowCircleDown />
+                        </button>
+                      </div>
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Last Name
@@ -90,6 +123,14 @@ const Html = ({
                   ))}
                 </tbody>
               </table>
+              <Pagination
+                totalData={totalData}
+                setCurrentPage={setCurrentPage}
+                goToPage={goToPage}
+                totalPages={totalPages}
+                startIdx={startIdx}
+                currentPage={currentPage}
+              />
             </div>
           </div>
         </div>
